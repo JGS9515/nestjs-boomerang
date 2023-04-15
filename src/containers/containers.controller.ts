@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TasksService } from './tasks.service';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
+import { ContainersService } from './containers.service';
+import { CreateTaskDto } from './dto/create-container.dto';
+import { UpdateTaskDto } from './dto/update-container.dto';
 
-@Controller('tasks')
-export class TasksController {
-  constructor(private readonly tasksService: TasksService) {}
+@Controller('containers')
+export class ContainersController {
+  constructor(private readonly tasksService: ContainersService) {}
 
   @Post()
   create(@Body() createTaskDto: CreateTaskDto) {

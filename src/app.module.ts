@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TasksModule } from './tasks/tasks.module';
+import { ContainersModule } from './containers/containers.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -23,7 +23,7 @@ import configuration from './config';
     ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
-    TasksModule,
+    ContainersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

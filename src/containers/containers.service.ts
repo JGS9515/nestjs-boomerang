@@ -1,12 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression, Interval, Timeout } from '@nestjs/schedule';
 import { LoggerService } from 'src/logger/logger.service';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
+import { CreateTaskDto } from './dto/create-container.dto';
+import { UpdateTaskDto } from './dto/update-container.dto';
 
 @Injectable()
-export class TasksService {
-  constructor(private readonly logger: LoggerService = new Logger(TasksService.name)) {}
+export class ContainersService {
+  constructor(private readonly logger: LoggerService = new Logger(ContainersService.name)) {}
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   handleCron() {
@@ -24,7 +24,7 @@ export class TasksService {
   }
 
   create(createTaskDto: CreateTaskDto) {
-    return 'This action adds a new task';
+    return 'This action adds a new container';
   }
 
   findAll() {
@@ -32,14 +32,14 @@ export class TasksService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} task`;
+    return `This action returns a #${id} container`;
   }
 
   update(id: number, updateTaskDto: UpdateTaskDto) {
-    return `This action updates a #${id} task`;
+    return `This action updates a #${id} container`;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} task`;
+    return `This action removes a #${id} container`;
   }
 }
