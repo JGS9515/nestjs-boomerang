@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Role } from '../enums/role.enum';
+import { Container } from 'src/containers/entities/container.entity';
 
 @Entity("users")
 @Unique(['email'])
@@ -20,7 +21,10 @@ export class User {
   @Column({
     type: 'enum',
     enum: Role,
-    default: Role.costumer,
+    default: Role.customer,
   })
   role: Role;
+
+  @OneToMany(() => Container, container => container.user)
+  containers: Container[];
 }
