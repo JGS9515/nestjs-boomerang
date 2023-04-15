@@ -13,7 +13,7 @@ export class AuthService {
     private readonly logger: LoggerService = new Logger(AuthService.name),
     private jwtService: JwtService,
     private userservice: UsersService,
-  ) {}
+  ) { }
 
   async login(user: any): Promise<Record<string, any>> {
     // Validation Flag
@@ -71,7 +71,7 @@ export class AuthService {
 
     // Transform body into DTO
     const userDTO = new UsersDTO();
-    
+
     userDTO.email = body.email;
     userDTO.name = body.name;
     userDTO.role = body.role;
