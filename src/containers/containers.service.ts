@@ -1,12 +1,21 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Cron, CronExpression, Interval, Timeout } from '@nestjs/schedule';
 import { LoggerService } from 'src/logger/logger.service';
-import { CreateTaskDto } from './dto/create-container.dto';
-import { UpdateTaskDto } from './dto/update-container.dto';
+import { CreateContainerDto } from './dto/create-container.dto';
+import { UpdateContainerDto } from './dto/update-container.dto';
+import { Container } from './entities/container.entity';
+
+
+
 
 @Injectable()
 export class ContainersService {
-  constructor(private readonly logger: LoggerService = new Logger(ContainersService.name)) {}
+  constructor(
+    @InjectRepository(Container) private readonly containersRepository: Repository<Container>,
+    private readonly logger: LoggerService = new Logger(ContainersService.name),
+  ) {}
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   handleCron() {
@@ -23,7 +32,7 @@ export class ContainersService {
     this.logger.debug('Called once after 5 seconds');
   }
 
-  create(createTaskDto: CreateTaskDto) {
+  create(createTaskDto: CreateContainerDto) {
     return 'This action adds a new container';
   }
 
@@ -35,7 +44,7 @@ export class ContainersService {
     return `This action returns a #${id} container`;
   }
 
-  update(id: number, updateTaskDto: UpdateTaskDto) {
+  update(id: number, updateTaskDto: UpdateContainerDto) {
     return `This action updates a #${id} container`;
   }
 
