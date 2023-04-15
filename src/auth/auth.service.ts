@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private readonly logger: LoggerService = new Logger(AuthService.name),
     private jwtService: JwtService,
-    private userservice: UsersService,
+    private userService: UsersService,
   ) { }
 
   async login(user: any): Promise<Record<string, any>> {
@@ -36,7 +36,7 @@ export class AuthService {
 
     if (isOk) {
       // Get user information
-      const userDetails = await this.userservice.findOne(user.email);
+      const userDetails = await this.userService.findOneByEmail(user.email);
 
       // Check if user exists
       if (userDetails == null) {
@@ -51,7 +51,7 @@ export class AuthService {
           status: 200,
           msg: {
             email: user.email,
-            access_token: this.jwtService.sign({ email: user.email }),
+            access_token: this.jwtService.sign({ email: user.email, role:userDetails.role }),
           },
         };
       } else {
@@ -86,7 +86,7 @@ export class AuthService {
       }
     });
     if (isOk) {
-      await this.userservice.create(userDTO).catch((error) => {
+      await this.userService.create(userDTO).catch((error) => {
         this.logger.debug(error.message);
         isOk = false;
       });
