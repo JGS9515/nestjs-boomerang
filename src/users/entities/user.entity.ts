@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Role } from '../enums/role.enum';
-import { Container } from 'src/containers/entities/container.entity';
+import { Container } from '../../containers/entities/container.entity';
 
 @Entity("users")
 @Unique(['email'])

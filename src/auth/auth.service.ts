@@ -1,11 +1,11 @@
 import { compareSync, hashSync } from 'bcryptjs';
 import { Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersDTO } from 'src/users/dto/create-user.dto';
+import { UsersDTO } from '../users/dto/create-user.dto';
 import { validate } from 'class-validator';
-import { LoggerService } from 'src/logger/logger.service';
-import { UsersService } from 'src/users/users.service';
-import { LogInDTO } from 'src/users/dto/login-user.dto';
+import { LoggerService } from '../logger/logger.service';
+import { UsersService } from '../users/users.service';
+import { LogInDTO } from '../users/dto/login-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -15,7 +15,7 @@ export class AuthService {
     private userService: UsersService,
   ) { }
 
-  async login(user: any): Promise<Record<string, any>> {
+  async login(user: LogInDTO): Promise<Record<string, any>> {
     // Validation Flag
     let isOk = false;
 
