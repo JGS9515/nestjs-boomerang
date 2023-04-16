@@ -14,7 +14,7 @@ export class ContainersService {
   constructor(
     @InjectRepository(Container) private readonly containersRepository: Repository<Container>,
     private userService: UsersService
-  ) {}
+  ) { }
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   handleCron() {
@@ -35,8 +35,8 @@ export class ContainersService {
     return 'This action adds a new container';
   }
 
-  findAll() {
-    return `This action returns all tasks`;
+  async findAll() {
+    return await this.containersRepository.find();
   }
 
   findOne(id: number) {
@@ -47,7 +47,7 @@ export class ContainersService {
   update(id: number, updateContainerDto: UpdateContainerDto) {
     return `This action updates a #${id} container`;
   }
-  async updateContainerOwner(containerId: number, newOwnerId: number){
+  async updateContainerOwner(containerId: number, newOwnerId: number) {
     const container = await this.containersRepository.findOne(containerId, {
       relations: ['user'],
     });
