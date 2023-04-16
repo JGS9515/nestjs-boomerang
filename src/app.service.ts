@@ -3,9 +3,7 @@ import { Body, Injectable, Req, Res } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return JSON.stringify({
-      message: 'Hello World!',
-    });
+    return 'Hello World!';
   }
 
   healthCheck(): string {
