@@ -27,7 +27,11 @@ By doing so, I saved time setting things up. You can track how many changes I im
 
 ## Database
 
-Use the `db.sql` file at the root of the project to create the Postgres Database. Note that users have a password field, the value of all of them are `test123` encrypted using bcryptjs library. I used the same password so it was easier to test the log in endpoint.
+Use the `db.sql` file at the root of the project to create the Postgres Database. 
+
+The `.env.example` has the environmental variables required for db connection. Please create a `.env` file following the `.env.example` file, and change any environmental variable if required. Example, I created a db called boomerang, so the value of the `POSTGRES_DB` is boomerang
+
+Note that users have a password field, the value of all of them are `test123` encrypted using bcryptjs library. I used the same password so it was easier to test the log in endpoint.
 
 ## Installation (Development)
 
