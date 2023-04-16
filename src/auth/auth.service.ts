@@ -40,7 +40,7 @@ export class AuthService {
 
       // Check if user exists
       if (userDetails == null) {
-        return { status: 401, msg: { msg: 'Invalid credentials' } };
+        return { status: 401, msg: 'Invalid credentials'  };
       }
 
       // Check if the given password match with saved password
@@ -56,18 +56,16 @@ export class AuthService {
         };
       } else {
         // Password or email does not match
-        return { status: 401, msg: { msg: 'Invalid credentials' } };
+        return { status: 401, msg: 'Invalid credentials' };
       }
     } else {
-      return { status: 400, msg: { msg: 'Invalid fields.' } };
+      return { status: 400, msg: 'Invalid fields.' };
     }
   }
 
-  async register(body: any): Promise<Record<string, any>> {
+  async register(body: UsersDTO): Promise<Record<string, any>> {
     // Validation Flag
     let isOk = false;
-    // let test = new bcryptjs()
-
 
     // Transform body into DTO
     const userDTO = new UsersDTO();
