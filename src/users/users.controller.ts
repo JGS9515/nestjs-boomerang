@@ -1,12 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersDTO } from './dto/create-user.dto';
 import { JwtAuthGuard } from '../auth/strategy/jwt-auth.guard';
 import { RolesGuard } from '../auth/strategy/roles.guard';
 import { Role } from './enums/role.enum';
 import { Roles } from '../custom.decorator';
-
-// import { UpdateContainerDto } from './dto/update-task.dto';
 
 @Controller('users')
 export class UsersController {
@@ -26,7 +24,7 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.usersService.findOneById(id);
+    return this.usersService.findUserAndContainerByUserId(id);
   }
   
 
@@ -35,8 +33,8 @@ export class UsersController {
 //     return this.usersService.update(updateTaskDto);
 //   }
 
-//   @Delete(':id')
-//   remove(@Param('id') id: string) {
-//     return this.usersService.remove(id);
-//   }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.usersService.remove(id);
+  }
 }

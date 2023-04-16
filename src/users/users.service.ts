@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UsersDTO } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
-import { ContainersService } from 'src/containers/containers.service';
+// import { ContainersService } from 'src/containers/containers.service';
 
 // This should be a real class/interface representing a user entity
 // export type User = any;
@@ -12,9 +12,7 @@ import { ContainersService } from 'src/containers/containers.service';
 export class UsersService {
   constructor(
     @InjectRepository(User) private readonly usersRepository: Repository<User>,
-    private containerService: ContainersService,
-    
-    ) {}
+  ) { }
 
   create(createUserDto: UsersDTO): Promise<User> {
     const user = new User();
@@ -36,29 +34,14 @@ export class UsersService {
       email: email,
     });
   }
-  async findOneById(id: number): Promise<any> {
-    // let user = await this.usersRepository.findOne({
-    //   id: id,
-    // });
-    // let container = this.containerService.findOne(id)
-    // return user
+  async findUserAndContainerByUserId(id: number): Promise<any> {
     const user = await this.usersRepository.findOne(id, { relations: ['containers'] });
 
     if (!user) {
-      throw new Error(`User with id ${id} not found`);
+      return { status: 404, msg: `User with id ${id} not found` };
     }
 
-    const { role, name, containers } = user;
-
-    return {
-      id,
-      role,
-      name,
-      assignedContainers: containers.map(container => ({
-        id: container.id,
-        name: container.name,
-      })),
-    };
+    return user;
   }
 
   async remove(id: string): Promise<void> {
