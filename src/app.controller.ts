@@ -25,10 +25,4 @@ export class AppController {
     res.status(200).json(body);
   }
 
-  // @Get('/premium-echo')
-  // @UseGuards(JwtAuthGuard, RolesGuard)
-  // @Roles(Role.premium)
-  // getPremiumEcho(@Req() req, @Res() res, @Body() body) {
-  //   res.status(200).json(body);
-  // }
 }
