@@ -1,0 +1,148 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Boomerang",
+		"_postman_id": "c63323d5-4103-4c57-2ebf-8ea0425a5f9b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "containers",
+			"description": "",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"url": "http://localhost:3000/containers",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Update Container Owner",
+					"request": {
+						"url": "http://localhost:3000/containers/move/1",
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_id\": 2\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"url": "http://localhost:3000/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"ale@gmail.com\",\n\t\"password\": \"test123\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"url": "http://localhost:3000/auth/register",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"test@test.com\",\n\t\"name\": \"Javier\",\n\t\"password\": \"test123\",\n\t\"role\": \"customer\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"description": "",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"url": "http://localhost:3000/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFsZUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2ODE2NjIwMTEsImV4cCI6MTY4MTY2NTYxMX0.Fr662tSem6XAh7PVZWl-g-Sh9mfzAtYoF_Wki0S4q6fbs-FTSx0RtMdU6oW8F-qCE4cnXD5nhpkMhnTORWFX4mO4ZaNKe_Cojq0zuxn9gx6A3vjL6kdqw0I3AqhV21IK2fyA2Wd0IkJ8Jo0E7REEfV8w_dHmCVAhi2ogkxDqsEYHdbEiAmZrWv6s_7qXWxZvkWq5V-bTpsJpXDHsdcKs6PyA-D8lBEbG3nm1xIfmcy-32uZHoDTU28ikr6b5qyYw6q-H_vKYyDTxbWiqCrw0q9gdVSyn8fLiEgY0ZcbbNFOav1IfmCuKeiFiStY0e6G0jroD4WN2P1BCeTLqNaX2Zw",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "I added a Guard to check if the request is coming from a customer, just to use it as an authentication example"
+					},
+					"response": []
+				},
+				{
+					"name": "GetOneById",
+					"request": {
+						"url": "http://localhost:3000/users/1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteById",
+					"request": {
+						"url": "http://localhost:3000/users/12",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
