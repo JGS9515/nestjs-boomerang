@@ -5,30 +5,40 @@ import { UpdateContainerDto } from './dto/update-container.dto';
 
 @Controller('containers')
 export class ContainersController {
-  constructor(private readonly tasksService: ContainersService) {}
+  constructor(
+    private readonly containersService: ContainersService
+  ) {}
 
   @Post()
   create(@Body() createTaskDto: CreateContainerDto) {
-    return this.tasksService.create(createTaskDto);
+    return this.containersService.create(createTaskDto);
   }
 
   @Get()
   findAll() {
-    return this.tasksService.findAll();
+    return this.containersService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tasksService.findOne(+id);
+    return this.containersService.findOne(+id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateContainerDto) {
-    return this.tasksService.update(+id, updateTaskDto);
+    return this.containersService.update(+id, updateTaskDto);
+  }
+
+  @Patch('/move/:id')
+  updateContainerOwner(@Param('id') id: number, @Body() updateContainerDto: UpdateContainerDto) {
+    if(!updateContainerDto.user_id){
+      return { status: 400, msg: 'Bad Request' };
+    }
+    return this.containersService.updateContainerOwner(id, updateContainerDto.user_id);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tasksService.remove(+id);
+    return this.containersService.remove(+id);
   }
 }

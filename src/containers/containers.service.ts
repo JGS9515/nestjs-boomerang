@@ -6,30 +6,29 @@ import { LoggerService } from 'src/logger/logger.service';
 import { CreateContainerDto } from './dto/create-container.dto';
 import { UpdateContainerDto } from './dto/update-container.dto';
 import { Container } from './entities/container.entity';
-
-
+import { UsersService } from 'src/users/users.service';
 
 
 @Injectable()
 export class ContainersService {
   constructor(
     @InjectRepository(Container) private readonly containersRepository: Repository<Container>,
-    private readonly logger: LoggerService = new Logger(ContainersService.name),
+    private userService: UsersService
   ) {}
 
   @Cron(CronExpression.EVERY_10_SECONDS)
   handleCron() {
-    this.logger.debug('Called when the current second is 10');
+    return "Called when the current second is 10";
   }
 
   @Interval(10000)
   handleInterval() {
-    this.logger.debug('Called every 10 seconds');
+    return 'Called every 10 seconds';
   }
 
   @Timeout(5000)
   handleTimeout() {
-    this.logger.debug('Called once after 5 seconds');
+    return 'Called once after 5 seconds';
   }
 
   create(createTaskDto: CreateContainerDto) {
@@ -44,8 +43,41 @@ export class ContainersService {
     return `This action returns a #${id} container`;
   }
 
-  update(id: number, updateTaskDto: UpdateContainerDto) {
+
+  update(id: number, updateContainerDto: UpdateContainerDto) {
     return `This action updates a #${id} container`;
+  }
+  async updateContainerOwner(containerId: number, newOwnerId: number){
+    const container = await this.containersRepository.findOne(containerId, {
+      relations: ['user'],
+    });
+
+    if (!container) {
+      return { status: 404, msg: 'Container not found' };
+    }
+
+    const newOwner = await this.userService.findUserAndContainerByUserId(newOwnerId);
+
+    if (!newOwner) {
+      return { status: 404, msg: 'New owner not found' };
+    }
+
+    // Check that the container is being transferred between users with different roles
+    if (container.user.role === newOwner.role) {
+      return { status: 400, msg: 'Containers can only be transferred between users with different roles' };
+
+    }
+
+    // Check that the new owner is a customer and has less than 2 containers
+    if (newOwner.role === 'customer' && newOwner.containers.length > 1) {
+      return { status: 400, msg: 'A customer user can\'t have more than 2 containers' };
+
+    }
+
+    container.user = newOwner;
+    container.user_id = newOwnerId;
+
+    return this.containersRepository.save(container);
   }
 
   remove(id: number) {
