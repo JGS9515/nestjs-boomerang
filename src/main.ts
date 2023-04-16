@@ -10,10 +10,9 @@ async function bootstrap() {
   // app.setGlobalPrefix('api');
 
   const config = new DocumentBuilder()
-    .setTitle('prime nestjs')
-    .setDescription('Boilerplate for nestjs')
+    .setTitle('API')
+    .setDescription('Boomerang Backend JS dev test')
     .setVersion('1.0')
-    .addTag('api')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

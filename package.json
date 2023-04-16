@@ -1,11 +1,10 @@
 {
-  "name": "prime-nestjs",
+  "name": "Boomerang Backend JS dev test",
   "version": "1.0.0",
-  "description": "The ultimate collection of production-ready and flexible NestJS Boilerplate.",
+  "description": "",
   "author": {
-    "name": "Joey Goksu",
-    "email": "me@joeygoksu.com",
-    "url": "https://joeygoksu.com"
+    "name": "Javier González Santos",
+    "email": "javiergs9515@gmail.com"
   },
   "private": false,
   "license": "MIT",
