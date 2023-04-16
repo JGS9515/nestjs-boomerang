@@ -1,31 +1,8 @@
-# NestJS Boilerplate
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![GitHub issues](https://img.shields.io/github/issues/joeygoksu/prime-nestjs.svg)
-[![Known Vulnerabilities](https://snyk.io/test/github/joeygoksu/prime-nestjs/badge.svg)](https://snyk.io/test/github/joeygoksu/prime-nestjs)
-![GitHub stars](https://img.shields.io/github/stars/joeygoksu/prime-nestjs.svg?style=social&label=Star&maxAge=2592000)
-
-<p align="left">
-  <img src="documentation/prime-nestjs.jpg" width="600" alt="prime-nestjs">
-</p>
+# Backend JS dev test
 
 ## 📖 Description
 
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
-![Maintenance](https://img.shields.io/maintenance/yes/2023.svg)
-![GitHub last commit](https://img.shields.io/github/last-commit/joeygoksu/prime-nestjs.svg)
-![GitHub repo size](https://img.shields.io/github/repo-size/joeygoksu/prime-nestjs.svg)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/joeygoksu/prime-nestjs.svg)
-![GitHub top language](https://img.shields.io/github/languages/top/joeygoksu/prime-nestjs.svg)
-![GitHub language count](https://img.shields.io/github/languages/count/joeygoksu/prime-nestjs.svg)
-![GitHub contributors](https://img.shields.io/github/contributors/joeygoksu/prime-nestjs.svg)
-![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/y/joeygoksu/prime-nestjs.svg)
-![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/m/joeygoksu/prime-nestjs.svg)
-![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/w/joeygoksu/prime-nestjs.svg)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/joeygoksu/prime-nestjs.svg)
-
-Introducing the NestJS boilerplate, a comprehensive and modular starting point for your next Node.js project! Built with the latest version of NestJS, a powerful and flexible framework for building efficient and scalable server-side applications, this boilerplate includes support for TypeScript, PostgreSQL, and JWT authentication out of the box. Other features include configuration support with Dotenv, RBAC and CBAC for authorization, TypeORM for database interactions, Swagger for API documentation, and Docker Compose for container orchestration. Additionally, the boilerplate comes with pre-configured linting tools and secure HTTP headers with Helmet. Simply clone the repository, install the dependencies, and start building your next great idea!
+Here is a simple API backend to handle container lending between customers and restaurants. I used a boilerplate that already had the most of the following features pre configured:
 
 ## 🚀 Features
 
@@ -40,17 +17,17 @@ Introducing the NestJS boilerplate, a comprehensive and modular starting point f
 - 📃 **Swagger** - API Documentation
 - 🐳 **Docker Compose** - Container Orchestration
 - 🔐 **Helmet** - secure HTTP headers
-- 😴 **Insomnia** - Insomnia config for endpoints
+- 📪 **Postman** - Postman config for endpoints
 - 📏 **ESLint** — Pluggable JavaScript linter
 - 💖 **Prettier** - Opinionated Code Formatter
 - ✨ **Commitlint** - Lint your conventional commits
 - 🕵️‍♂️ **Code Scanning** - Code scanning with CodeQL
 
-## Quick Setup (Production)
+By doing so, I saved time setting things up. You can track how many changes I implement myself by chekcing the commits.
 
-```bash
-bash ./setup.sh
-```
+## Database
+
+Use the `db.sql` file at the root of the project to create the Postgres Database. Note that users have a password field, all of them are test123 encrypted using bcryptjs library. I used the same password so it was easier to test the log in endpoint.
 
 ## Installation (Development)
 
@@ -86,51 +63,8 @@ $ npm run test:cov
 
 ## Endpoints
 
-1. Install the insomnia app
-2. Import the `endpoints.json` file
+1. Install the postman app
+2. Import the `Boomerang.postman_collection.json` file
+4. There you can check the main endpoints requested in the description and some others where you can check authorization (GetAllUsers)
 3. Enjoy
 
-## Generate SSL certificates
-
-1.  Generate an RSA private key, of size 2048, and output it to a file named key.pem:
-
-```bash
-openssl genrsa -out private_key.pem 2048
-```
-
-```bash
-# It needs be copied&pasted from terminal manually
-awk 'NF {sub(/\r/, ""); printf"%s\\n",$0;}' private_key.pem
-```
-
-2.  Extract the public key from the key pair, which can be used in a certificate:
-
-```bash
-openssl rsa -in private_key.pem -outform PEM -pubout -out public_key.pem
-```
-
-```bash
-# It needs be copied&pasted from terminal manually
-awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' public_key.pem
-```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
-
-<!-- ## 🌸 Built with template -->
-
----
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
-<table>
-  <tr>
-    <td align="center"><a href="https://joeygoksu.com"><img src="https://avatars.githubusercontent.com/u/6523823?v=3?s=100" width="100px;" alt=""/><br /><sub><b>Joey Goksu</b></sub></a><br />
-    <a href="https://joeygoksu.com/aboutme" title="About me">📖</a>
-    </td>
-</table>
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-Made with ♥ by <a href="https://joeygoksu.com/">Joey Göksu</a>
