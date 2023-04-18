@@ -8,7 +8,6 @@ import { UsersDTO } from 'src/users/dto/create-user.dto';
 
 describe('AuthService', () => {
   let authService: AuthService;
-  let usersService: UsersService;
 
   const mockJwtService = {
     sign: jest.fn().mockReturnValue('mockToken'),
@@ -71,7 +70,7 @@ describe('AuthService', () => {
 
     it('should return 200 if login is successful', async () => {
       const user = { email: 'test@test.com', password: 'test1234' };
-      const userDetails = { email: 'test@test.com', password: '$2a$10$yOEzt.3J8j.nps4gWU2nOO70tGQVqHHTcSPMvotGSEpidEsX9vtZu' };//I know we should not have a real password in here
+      const userDetails = { email: 'test@test.com', password: '$2a$10$yOEzt.3J8j.nps4gWU2nOO70tGQVqHHTcSPMvotGSEpidEsX9vtZu' };
       
       mockUsersService.findOneByEmail.mockResolvedValue(userDetails);
 
